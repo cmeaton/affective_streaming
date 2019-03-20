@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[67]:
-
-
 import cv2
 import glob
 import random
@@ -115,7 +109,7 @@ filename = 'lin_svm_model_means.sav'
 pickle.dump(clf, open(filename, 'wb'))
 
 
-# In[ ]:
+
 
 
 
