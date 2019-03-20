@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import cv2
 import glob
 import tensorflow as tf
@@ -44,16 +38,12 @@ faceDet_four = cv2.CascadeClassifier("/Users/cmeaton/Documents/code/opencv/data/
 
 
 def detect_faces(emotion):
-    
+
     emotions = ["neutral", "anger", "contempt", "disgust", "fear", "happy", "sadness", "surprise"] #Define emotions
     files = glob.glob("sorted_set/%s/*" %emotion) #Get list of all images with emotion
     filenumber = 0
     for f in files:
         frame = cv2.imread(f) #Open image
-#         img = tf.image.grayscale_to_rgb(frame)
-       # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #Convert image to grayscale
-        # gray = cv2.cvtColor(frame, cv2.CV_GRAY2RGB)
-        #img = cv2.cvtColor(frame, CV_GRAY2BGR)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #Convert image to grayscale
 
         #Detect face using 4 different classifiers
@@ -75,22 +65,14 @@ def detect_faces(emotion):
         #Cut and save face
         for (x, y, w, h) in facefeatures: #get coordinates and size of rectangle containing face
             print("face found in file: %s" %f)
-#             gray = gray[y:y+h, x:x+w] #Cut the frame to size
             gray = gray[y:y+h, x:x+w] #Cut the frame to size
 
             try:
                 out = cv2.resize(gray, (350, 350)) #Resize face so all images have same size
-                cv2.imwrite("dataset/%s/%s.jpg" %(emotion, filenumber), out) #Write image
+                cv2.imwrite("data_set/%s/%s.jpg" %(emotion, filenumber), out) #Write image
             except:
                 pass #If error, pass file
         filenumber += 1 #Increment image number
 
 for emotion in emotions:
-    detect_faces(emotion) 
-
-
-# In[ ]:
-
-
-
-
+    detect_faces(emotion)
