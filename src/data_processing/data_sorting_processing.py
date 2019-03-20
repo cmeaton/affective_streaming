@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import cv2
 import glob
 import tensorflow as tf
@@ -80,7 +74,7 @@ def detect_faces(emotion):
 
             try:
                 out = cv2.resize(gray, (350, 350)) #Resize face so all images have same size
-                cv2.imwrite("dataset/%s/%s.jpg" %(emotion, filenumber), out) #Write image
+                cv2.imwrite("data_set/%s/%s.jpg" %(emotion, filenumber), out) #Write image
             except:
                 pass #If error, pass file
         filenumber += 1 #Increment image number
