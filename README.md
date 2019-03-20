@@ -1,1 +1,1 @@
-![](emotion_stream.gif)
+![](src/visualizations/emotion_stream.gif)
