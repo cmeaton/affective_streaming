@@ -26,7 +26,7 @@ I trainied my data on the Cohn-Kanade CK+ dataset which can be found [here](http
 
 ### Tools
 
-Many tools were used for this project, including python, pandas, numpy, matplotlib, sklearn, keras, and openCV. For a full list of depencies, see /requirements.txt.
+Many tools were used for this project, including python, pandas, numpy, matplotlib, sklearn, keras, Dlib and openCV. For a full list of depencies, see /requirements.txt.
 
 ### Model and Results
 
