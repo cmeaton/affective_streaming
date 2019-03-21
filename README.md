@@ -30,11 +30,11 @@ Many tools were used for this project, including python, pandas, numpy, matplotl
 
 ### Model and Results
 
-Before building any models, I had to reduce noise in my data. To do so, I used a Haar Cascade algorithm to locate faces in images, crop the iamges to include only the face, and return the new image in grayscale. For example, the image fed into my model is just the portion within the blue square.
+Before building any models, I had to reduce noise in my data. To do so, I used a Haar Cascade algorithm to locate faces in images, crop the images to include only the face, and return the new image in grayscale. For example, the image fed into my model is just the portion within the blue square.
 
 ![](src/visualization/frame.png)
 
-The first model I built to classify facial emotions from images was a convolutional neural network. I used the pre-existing VGG16 architecture to extract features, but used my own training layers (4) at the base, finishing with a 6 class softmax classifaction layer. This approach yield 93% validation accuracy, but was severely overfitting my data despite implementing early stopping and a dropout layer. In addition to its innacuraccy on images in the wild, the model size limited its effectiveness for real time predictions on a webcam stream.
+The first model I built to classify facial emotions from images was a convolutional neural network. I used the pre-existing VGG16 architecture to extract features, but used my own training layers (4) at the base, finishing with a 6 class softmax classifaction layer. This approach yield 93% validation accuracy, but was severely overfitting my data despite implementing early stopping and a dropout layer. In addition to its inaccuracy on images in the wild, the model size limited its effectiveness for real time predictions on a webcam stream.
 
 As a result, I decided to branch away from deep learning and utilize facial landmark data. As facial landmark algorithms yield an array of 68 x,y coordinates, the feature space was much more lightweight and simple. I used Dlib's shape predictor facial landmarks algorithm to find landmarks, which you can see in the example below.
 
