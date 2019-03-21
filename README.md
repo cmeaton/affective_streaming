@@ -14,7 +14,7 @@ The smiling stranger is in a good mood and is attempting to communicate their jo
 
 While humans intuitively percieve emotions, machines must be taught. We are communicating more and more with machines on a daily basis and as a result, we are in a unique position in history to design the future of human-machine interaction. We could adapt to machines and interact with them in a cold, impersonal, and purely rational way, or we could have machines adapt to us by building them with emotional intelligence. This ideal future could combine promises of technological innovation without sacrificing core aspects of humanity such as meaning, feeling, and subjectivity. 
 
-My project has two parts. The first was creating a support-vector machine model to classify facial emotion from images using facial landmarks, a 68 point coordinate system that maps onto the "moving parts" of the face. Then, this model was fed into a live video stream from a wecam, where it classifies the emotion of all present faces frame by frame, and returns a prediction in real time. 
+My project has two parts. The first was creating a support-vector classification model to classify facial emotion from images using facial landmarks, a 68 point coordinate system that maps onto the "moving parts" of the face. Then, this model was fed into a live video stream from a wecam, where it classifies the emotion of all present faces frame by frame, and returns a prediction in real time. 
 
 ### Applications
 
