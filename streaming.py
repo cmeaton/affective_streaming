@@ -102,19 +102,17 @@ def crop_face(imgarray, section, margin=40, size=64):
     return resized_img, (x_a, y_a, x_b - x_a, y_b - y_a)
 
 
-def process_frame(img_frame):
+def convert_img_to_numpy_array(img_data):
+    """
+    """
+    pass
+
+
+def process_frame(frame):
     """
     Take an image, process it, return edited image.
     """
-    print('Processed')
-
-# The code below creates a live video stream from webcam
-
-video_capture = cv2.VideoCapture(0)
-while True:
-    # process_frame()
     # Capture frame-by-frame
-    ret, frame = video_capture.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = faceDet_three.detectMultiScale(
         gray,
@@ -163,9 +161,11 @@ while True:
             fontColor = (196, 0, 255)
             font = cv2.FONT_HERSHEY_TRIPLEX
             fontScale = 1.5
-
-
-
+        else:
+            emotion = ''
+            fontColor = (255,255,255)
+            font = cv2.FONT_ITALIC
+            fontScale = 1.5
 
         bottomLeftCornerOfText = (10,100)
         lineType               = 2
@@ -187,12 +187,23 @@ while True:
         # Draw on our image, all the finded cordinate points (x,y)
         for (x, y) in shape:
             cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
-#    cv2.imshow('Keras Faces', frame)
-    cv2.imshow('Keras Faces', frame)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
 
-# When everything is done, release the capture
-video_capture.release()
-cv2.destroyAllWindows()
+def run_video():
+    # The code below creates a live video stream from webcam
+    video_capture = cv2.VideoCapture(0)
+    while True:
+        ret, frame = video_capture.read()
+        process_frame(frame)
+        cv2.imshow('Keras Faces', frame)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    # When everything is done, release the capture
+    video_capture.release()
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    run_video()

@@ -22,11 +22,6 @@
 		Webcam.attach( '#my_camera' );
 	</script>
 
-	<!-- A button for taking snaps -->
-	<form>
-		<input type=button value="Take Snapshot" onClick="take_snapshot()">
-	</form>
-
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
 		function take_snapshot() {
@@ -43,14 +38,19 @@
 	<script language="JavaScript">
 		function process_snapshot() {
 			// take snapshot and get image data
-			Webcam.snap( function(data_uri) {
-				// display results in page
-				document.getElementById('results').innerHTML =
-					'<h2>Here is your image:</h2>' +
-					'<img src="'+data_uri+'"/>';
-			} );
+			Webcam.snap(function(data_uri) {
+				Webcam.upload(data_uri, 'http://localhost:5000/process', function(code, text) {
+					document.getElementById('results').innerHTML =
+						'<h2>Here is your image:</h2>' + text;
+				} );
+			  } );
 		}
 	</script>
+
+	<!-- A button for taking snaps -->
+	<form>
+		<input type=button value="Take Snapshot" onClick="process_snapshot()">
+	</form>
 
 </body>
 </html>
