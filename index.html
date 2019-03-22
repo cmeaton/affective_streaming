@@ -2,6 +2,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>TITLE</title>
+
+	<style type="text/css">
+		#results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }
+	</style>
 </head>
 <body>
 	<div id="results">Your captured image will appear here...</div>
@@ -11,43 +15,37 @@
 	<!-- First, include the Webcam.js JavaScript Library -->
 	<script type="text/javascript" src="static/webcam.min.js"></script>
 
-	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
-		Webcam.set({
-			width: 350,
-			height: 350,
-			image_format: 'jpeg',
-			jpeg_quality: 90
-		});
-		Webcam.attach( '#my_camera' );
-	</script>
-
-	<!-- Code to handle taking the snapshot and displaying it locally -->
-	<script language="JavaScript">
-		function take_snapshot() {
-			// take snapshot and get image data
-			Webcam.snap( function(data_uri) {
-				// display results in page
-				document.getElementById('results').innerHTML =
-					'<h2>Here is your image:</h2>' +
-					'<img src="'+data_uri+'"/>';
-			} );
-		}
-	</script>
-
-	<script language="JavaScript">
+		//	Code to handle taking the snapshot and displaying it locally
 		function process_snapshot() {
 			// take snapshot and get image data
 			Webcam.snap(function(data_uri) {
 				Webcam.upload(data_uri, 'http://localhost:5000/process', function(code, text) {
-					console.log(text);
-					var dataURI = 'data:image/jpeg;base64,' + btoa(text);
+					// To show images in HTML we need to add this weird prefix and ensure that our
+					// data is image bytes that have been base64 encoded then decoded into a utf-8 string
+					var dataURI = 'data:image/jpeg;base64,' + text;
 					document.getElementById('results').innerHTML =
-						'<h2>Here is your image:</h2>' +
+						'<h2>Results:</h2>' +
 					  '<img src="'+dataURI+'"/>';
 				} );
 			} );
 		}
+
+	  // Configure a few settings and attach camera
+		Webcam.set({
+			width: 350,
+			height: 350,
+			dest_width: 350,
+			dest_height: 350,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+
+		// Run processing of a new image every 100ms, but only have the webcam is done loading
+		Webcam.on( 'load', function() {
+			window.setInterval(process_snapshot, 100);
+		} );
 	</script>
 
 	<!-- A button for taking snaps -->
