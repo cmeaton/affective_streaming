@@ -40,10 +40,13 @@
 			// take snapshot and get image data
 			Webcam.snap(function(data_uri) {
 				Webcam.upload(data_uri, 'http://localhost:5000/process', function(code, text) {
+					console.log(text);
+					var dataURI = 'data:image/jpeg;base64,' + btoa(text);
 					document.getElementById('results').innerHTML =
-						'<h2>Here is your image:</h2>' + text;
+						'<h2>Here is your image:</h2>' +
+					  '<img src="'+dataURI+'"/>';
 				} );
-			  } );
+			} );
 		}
 	</script>
 

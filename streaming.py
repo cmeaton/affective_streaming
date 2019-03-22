@@ -102,11 +102,21 @@ def crop_face(imgarray, section, margin=40, size=64):
     return resized_img, (x_a, y_a, x_b - x_a, y_b - y_a)
 
 
-def convert_img_to_numpy_array(img_data):
+def convert_img_bytes_to_numpy_array(img_bytes):
     """
+    Convert a buffer of bytes into a numpy array usable for processing.
     """
-    pass
+    return cv2.imdecode(np.frombuffer(img_bytes, np.uint8), -1)
 
+
+def convert_numpy_array_to_img(numpy_array):
+    """
+    Convert processed numpy array into image bytes.
+
+    docs.opencv.org/3.0-beta/modules/imgcodecs/doc/reading_and_writing_images.html#imencode
+    """
+    _, encoded_image = cv2.imencode('.jpeg', numpy_array)
+    return encoded_image.tobytes()
 
 def process_frame(frame):
     """
@@ -187,6 +197,8 @@ def process_frame(frame):
         # Draw on our image, all the finded cordinate points (x,y)
         for (x, y) in shape:
             cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
+
+    return frame
 
 
 def run_video():
