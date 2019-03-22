@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[67]:
-
-
 import cv2
 import glob
 import random
@@ -24,10 +18,10 @@ data = {} #Make dictionary for all values
 #data['landmarks_vectorised'] = []
 
 
-def get_files(emotion):    
+def get_files(emotion):
     '''Define function to get file list, randomly shuffle it and split 80/20'''
-    
-    
+
+
     files = glob.glob("data_set/%s/*" %emotion)
     random.shuffle(files)
     training = files[:int(len(files)*0.8)] #get first 80% of file list
@@ -36,7 +30,7 @@ def get_files(emotion):
 
 def get_landmarks(image):
     '''This function locates facial landmarks and computes the relative distance from the mean for each point.'''
-    
+
     detections = detector(image, 1)
     for k,d in enumerate(detections): #For all detected face instances individually
         shape = predictor(image, d) #Draw Facial Landmarks with the predictor class
@@ -64,7 +58,7 @@ def get_landmarks(image):
 
 def make_sets():
     '''This function creates test/train data and labels.'''
-    
+
     training_data = []
     training_labels = []
     prediction_data = []
@@ -113,10 +107,3 @@ print("Mean value lin svm: %s" %np.mean(accur_lin)) #FGet mean accuracy of the 1
 
 filename = 'lin_svm_model_means.sav'
 pickle.dump(clf, open(filename, 'wb'))
-
-
-# In[ ]:
-
-
-
-
