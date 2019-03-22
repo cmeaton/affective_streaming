@@ -1,35 +1,32 @@
 import cv2
 import numpy as np
 from imutils import face_utils
-import glob
-import random
 import math
 import dlib
-import itertools
 from sklearn.svm import SVC
 import pickle
 
 # load model
-filename = '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/lin_svm_model.sav'
+filename = 'models/saved_models/lin_svm_model.sav'
 loaded_model = pickle.load(open(filename, 'rb'))
 
 # load facial landmark algorithms
-p = '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/face_algorithms/shape_predictor_68_face_landmarks.dat'
+p = 'models/saved_models/face_algorithms/shape_predictor_68_face_landmarks.dat'
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(p)
 
 #load facial finder algorithms
 faceDet = cv2.CascadeClassifier(
-    '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/face_algorithms/haarcascade_frontalface_default.xml'
+    'models/saved_models/face_algorithms/haarcascade_frontalface_default.xml'
 )
 faceDet_two = cv2.CascadeClassifier(
-    "/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/face_algorithms//haarcascade_frontalface_alt2.xml"
+    "models/saved_models/face_algorithms//haarcascade_frontalface_alt2.xml"
 )
 faceDet_three = cv2.CascadeClassifier(
-    "/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/face_algorithms//haarcascade_frontalface_alt.xml"
+    "models/saved_models/face_algorithms//haarcascade_frontalface_alt.xml"
 )
 faceDet_four = cv2.CascadeClassifier(
-    "/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/project_5/src/models/saved_models/face_algorithms//haarcascade_frontalface_alt_tree.xml"
+    "models/saved_models/face_algorithms//haarcascade_frontalface_alt_tree.xml"
 )
 
 # placeholder for data to be used later
@@ -105,10 +102,17 @@ def crop_face(imgarray, section, margin=40, size=64):
     return resized_img, (x_a, y_a, x_b - x_a, y_b - y_a)
 
 
+def process_frame(img_frame):
+    """
+    Take an image, process it, return edited image.
+    """
+    pass
+
 # The code below creates a live video stream from webcam
 
 video_capture = cv2.VideoCapture(0)
 while True:
+    # process_frame()
     # Capture frame-by-frame
     ret, frame = video_capture.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
