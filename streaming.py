@@ -106,7 +106,7 @@ def process_frame(img_frame):
     """
     Take an image, process it, return edited image.
     """
-    pass
+    print('Processed')
 
 # The code below creates a live video stream from webcam
 
