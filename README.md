@@ -18,7 +18,7 @@ My project has two parts. The first was creating a support-vector classification
 
 ### Applications
 
-Temperamentally, I tilt heavily towards the philosophical aspect of machine learning. I pursued this project because building emotional intelligence into machines is an amazing opportunity to design an ideal future that is optimized not only for efficiency, productivity, and comfort, but for beauty, contentment, and value. However, this project yields itself to many more immediate and pragmatic applications. Such use cases include vehicle operator safety, highly-sensitive monitoring systems for patients, improved assessment of customer satisfaction in marketing campaigns/focus groups, and so on.
+Temperamentally, I tilt heavily towards the philosophical aspect of machine learning. I pursued this project because I think emotional AI is going to strongly influence our day-to-day lives and I want to understand how it works. However, this project yields itself to many more immediate and pragmatic applications. Such use cases include vehicle operator safety, highly-sensitive monitoring systems for patients, improved assessment of customer satisfaction in marketing campaigns/focus groups, and so on.
 
 ### Data
 
@@ -46,9 +46,11 @@ I used a support-vector machine algorithm to classify emotions from normalized f
 
 ### Future Work
 
-As with any passion project, there is tremendous room for growth. Immediate improvements will be centered around training my model on more comprehensive data. Fortunately, AffectNet, a more recent and more robust prelabeled dataset for facial emotion recognition was recently released. Retraining the model on this data, which has almost half a million images will improve accuracy and increase the range of emotional categories.
+As with any passion project, there is tremendous room for growth. Immediate improvements will be centered around training my model on more comprehensive data to increase accuracy. I would also like to retrain the model on more diverse data. The faces in the training images may have been representative of the University of Pittsburgh, but not our nation/world, so gathering more diverse training data will improve the model's efficacy for a wider range of people. Fortunately, AffectNet, a more recent and more robust prelabeled dataset for facial emotion recognition was recently released. Retraining the model on this data, which has almost half a million images will improve accuracy and increase the range of emotional categories.
 
 In addition, emotion is just one target to classify from facial images. Currently, data can be found to train models to predict age, gender, direction of gaze, energy level, and so on. Such models can have a myriad of use for a wide range of applications.
 
 I would also like to thank [Paul Vangent](http://www.paulvangent.com/) for providing helpful CK+ tutorials on his website, as well as the [Cohn-Kanade](http://www.consortium.ri.cmu.edu/index.php) team for providing their dataset for public use.
+
+For a full blog article on this and other projects, see my website: www.connoreaton.org
 
